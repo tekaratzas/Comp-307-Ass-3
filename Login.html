@@ -74,8 +74,6 @@
 	function Caesar(){
 		var x = document.getElementById("justin-trudeau");
 	    var password = JSON.stringify(x.elements[1].value);
-	    //the amount is subject to the id provided 
-		//document.getElementById("justin-trudeau").innerHTML = caesarShift(password, 12);
 
 		var username = JSON.stringify(x.elements[0].value);
 		var encryptedPassword = caesarShift(password, 12);
@@ -84,16 +82,16 @@
 
 		//everything up to this point works fine
 		sendServer(p);
-
-
 	};
 
 	var sendServer = function( encrypted ){
 
 		$.ajax({
-		  type: "POST",
-		  url: 'Login.php',
+		  type: 'POST',
+		  url: 'http://cs.mcgill.ca/~jluo15/Login.php',
 		  data: encrypted,
+		  dataType: 'jsonp',
+		  crossDomain: true,
 		  success: function(){
 		  	console.log("this is successful")
 		  },
